@@ -1,0 +1,418 @@
+
+
+
+ 
+<!doctype html>
+<head>
+<title>Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<style>
+:root {
+  --rowcells: 6;
+  --colcells: 5;
+}
+#buttonpanel {
+  display: flex;
+  background-color: brown;
+  padding: 10px;
+  justify-content: center;
+}
+
+#buttonpanel > button {
+  padding: 10px 20px;
+  margin: 0 20px 0 20px;
+  font-size: 4vw;
+  background-color: beige;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: repeat(var(--rowcells), 1fr);
+  grid-template-columns: repeat(var(--colcells), 1fr);
+  grid-gap: 10px;
+  background-color: brown;
+  padding: 10px;
+  }
+
+#grid > div  {
+  background-color: hotpink;
+  color: white;
+  font-size: 4vw;
+  padding: 10px;
+
+  /* center the div digits with 3 properties below */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  
+}
+
+/* mobile these days have 1080 resolution so we choose higher below
+ to ensure its not mobile but laptop or pc 
+@media (min-device-width: 1124px) {
+ */
+@media (max-width: 1920px) {
+  #main {
+    width: 50%;
+    height: 50%;
+  }
+}
+</style>
+</head>
+
+<div id="main">
+<div id="grid">
+</div>
+
+<div id="buttonpanel">
+	<button id="leftbutton">&lt;</button>
+<button id="counterbutton"/>
+	<button id="rightbutton">&gt;</button>
+</div>
+</div>
+<script>
+var pageNum = 0;  
+var gujnumbers = [
+"&#x0AE6;", "&#x0AE7;","&#x0AE8;","&#x0AE9;","&#x0AEA;","&#x0AEB",
+"&#x0AEC;", "&#x0AED;","&#x0AEE;","&#x0AEF;"
+];
+const arr = [
+
+  [[1,2,3,4,5], 
+  [2,1,3,4,5],
+  [1,3,2,4,5],
+  [3,1,2,4,5],
+  [2,3,1,4,5],
+  [3,2,1,4,5]], //adinath
+  
+  [[1,2,4,3,5],
+  [2,1,4,3,5],
+  [1,4,2,3,5],
+  [4,1,2,3,5],
+  [2,4,1,3,5],
+  [4,2,1,3,5]], //ajitnath
+ 
+
+  [[1,3,4,2,5],
+   [3,1,4,2,5],
+   [1,4,3,2,5],
+   [4,1,3,2,5],
+   [3,4,1,2,5],
+   [4,3,1,2,5]], //sambhavnath
+
+  [[2,3,4,1,5],
+   [3,2,4,1,5],
+   [2,4,3,1,5],
+   [4,2,3,1,5],
+   [3,4,2,1,5],
+   [4,3,2,1,5]], //abhinandan
+
+  [[1,2,3,5,4],
+   [2,1,3,5,4],
+   [1,3,2,5,4],
+   [3,1,2,5,4],
+   [2,3,1,5,4],
+   [3,2,1,5,4]], //sumtinath
+
+
+  [[1,2,5,3,4],
+   [2,1,5,3,4],
+   [1,5,2,3,4],
+   [5,1,2,3,4],
+   [2,5,1,3,4],
+   [5,2,1,3,4]], //padmaprabhu 
+
+  [[1,3,5,2,4],
+   [3,1,5,2,4],
+   [1,5,3,2,4],
+   [5,1,3,2,4],
+   [3,5,1,2,4],
+   [5,3,1,2,4]], //suparshwanath
+
+  [[2,3,5,1,4],
+   [3,2,5,1,4],
+   [2,5,3,1,4],
+   [5,2,3,1,4],
+   [3,5,2,1,4],
+   [5,3,2,1,4]], //chandraprabhu
+
+  [[1,2,4,5,3],
+   [2,1,4,5,3],
+   [1,4,2,5,3],
+   [4,1,2,5,3],
+   [2,4,1,5,3],
+   [4,2,1,5,3]], //suvidhinath
+
+
+  [[1,2,5,4,3],
+   [2,1,5,4,3],
+   [1,5,2,4,3],
+   [5,1,2,4,3],
+   [2,5,1,4,3],
+   [5,2,1,4,3]], //shitalnath
+
+  [[1,4,5,2,3],
+   [4,1,5,2,3],
+   [1,5,4,2,3],
+   [5,1,4,2,3],
+   [4,5,1,2,3],
+   [5,4,1,2,3]], //shreyanshnath
+
+  [[2,4,5,1,3],
+   [4,2,5,1,3],
+   [2,5,4,1,3],
+   [5,2,4,1,3],
+   [4,5,2,1,3],
+   [5,4,2,1,3]], //vasupujya
+
+  [[1,3,4,5,2],
+   [3,1,4,5,2],
+   [1,4,3,5,2],
+   [4,1,3,5,2],
+   [3,4,1,5,2],
+   [4,3,1,5,2]], //vimalnath
+
+  [[1,3,5,4,2],
+   [3,1,5,4,2],
+   [1,5,3,4,2],
+   [5,1,3,4,2],
+   [3,5,1,4,2],
+   [5,3,1,4,2]], //anantnath
+
+
+  [[1,4,5,3,2],
+   [4,1,5,3,2],
+   [1,5,4,3,2],
+   [5,1,4,3,2],
+   [4,5,1,3,2],
+   [5,4,1,3,2]], //dharmanath 
+
+  [[3,4,5,1,2],
+   [4,3,5,1,2],
+   [3,5,4,1,2],
+   [5,3,4,1,2],
+   [4,5,3,1,2],
+   [5,4,3,1,2]], //shantinath 
+
+  [[2,3,4,5,1],
+   [3,2,4,5,1],
+   [2,4,3,5,1],
+   [4,2,3,5,1],
+   [3,4,2,5,1],
+   [4,3,2,5,1]], //kunthunath 
+
+  [[2,3,5,4,1],
+   [3,2,5,4,1],
+   [2,5,3,4,1],
+   [5,2,3,4,1],
+   [3,5,2,4,1],
+   [5,3,2,4,1]], //arnath 
+
+  [[2,4,5,3,1],
+   [4,2,5,3,1],
+   [2,5,4,3,1],
+   [5,2,4,3,1],
+   [4,5,2,3,1],
+   [5,4,2,3,1]], //mallinath 
+
+  [[3,4,5,2,1],
+   [4,3,5,2,1],
+   [3,5,4,2,1],
+   [5,3,4,2,1],
+   [4,5,3,2,1],
+   [5,4,3,2,1]], //munisuvrat
+
+  [[1,9,5,8,4,3,6,2,9],
+   [6,2,7,1,9,5,8,4,3],
+   [8,4,3,6,2,7,1,9,5],
+   [2,7,6,4,3,8,9,5,1],
+   [4,3,8,9,5,1,2,7,6],
+   [9,5,1,2,7,6,4,3,8],
+   [5,1,9,3,8,4,7,6,2],
+   [7,6,2,5,1,9,3,8,4],
+   [3,8,4,7,6,2,5,1,9]], //nemnath
+
+  [[2,6,7,9,1,5,8,3,4],
+   [9,1,5,4,8,3,6,7,2],
+   [4,8,3,2,6,7,1,5,4],
+   [1,5,9,6,7,2,3,4,8],
+   [8,3,4,1,5,9,7,2,6],
+   [6,7,2,8,3,4,5,9,1],
+   [7,2,6,3,4,8,9,1,5],
+   [5,9,1,7,2,6,4,8,3],
+   [3,4,8,5,9,1,2,6,7]], //neminath
+  
+  [[3,8,4,5,1,9,7,6,2],
+   [5,1,9,7,6,2,3,8,4],
+   [7,6,2,3,8,4,5,1,9],
+   [4,3,8,9,5,1,2,7,6],
+   [9,5,1,2,7,6,4,3,8],
+   [2,9,6,4,3,8,9,5,1],
+   [8,4,3,1,9,5,6,2,7],
+   [1,9,5,6,2,7,9,4,3],
+   [6,2,7,8,4,3,1,9,5]], //parshwanath
+
+
+  [[4,2,9,3,7,5,8,6,1],
+   [3,7,5,8,6,1,4,2,9],
+   [8,6,1,4,2,9,3,7,5],
+   [6,1,8,2,9,4,5,3,7],
+   [2,9,4,7,5,3,1,8,6],
+   [7,5,3,6,1,8,9,4,2],
+   [5,3,7,9,4,2,6,1,8],
+   [1,8,6,5,3,7,2,9,7],
+   [9,4,2,1,8,6,7,5,3]], //mahavir
+
+
+  [[5,1,9,3,8,4,6,2,9],
+   [3,8,4,7,6,2,1,9,5],
+   [7,6,2,5,1,9,8,4,3],
+   [4,3,8,9,5,1,2,7,6],
+   [2,7,6,4,3,8,9,5,1],
+   [9,5,1,2,7,6,4,3,8],
+   [1,9,5,8,4,3,7,6,2],
+   [8,4,3,6,2,7,5,1,9],
+   [6,2,7,1,9,5,3,8,4]], //1
+
+
+
+  
+  [[6,2,7,1,9,5,3,8,4],
+   [8,4,3,6,2,7,5,1,9],
+   [1,9,5,8,4,3,7,6,2],
+   [9,5,1,2,7,6,4,3,8],
+   [2,7,6,4,3,8,9,5,1],
+   [4,3,8,9,5,1,2,7,6],
+   [7,6,2,5,1,9,8,4,3],
+   [3,8,4,7,6,2,1,9,5],
+   [5,1,9,3,8,4,6,2,7]], //2
+
+
+  [[7,2,6,3,4,8,5,9,1],
+   [3,4,8,5,9,1,7,2,6],
+   [5,9,1,7,2,6,3,4,8],
+   [1,5,9,8,3,4,6,7,2],
+   [6,7,2,1,5,9,8,3,4],
+   [8,3,4,6,7,2,1,5,9],
+   [2,6,7,4,8,3,9,1,5],
+   [4,8,3,9,1,5,2,6,7],
+   [9,1,5,2,6,7,4,8,3]], //3
+
+
+  [[8,3,4,2,6,7,5,9,1],
+   [6,7,2,9,1,5,3,4,8],
+   [1,5,9,4,8,3,7,2,6],
+   [3,4,8,1,5,9,6,7,2],
+   [7,2,6,8,3,4,1,5,9],
+   [5,9,1,6,7,2,8,3,4],
+   [9,1,5,7,2,6,4,8,3],
+   [4,8,3,5,9,1,2,6,7],
+   [2,6,7,3,4,8,9,1,5]], //4
+
+  [[9,1,5,2,6,7,4,8,3],
+   [4,8,3,9,1,5,2,6,7],
+   [2,6,7,4,8,3,9,1,5],
+   [8,3,4,6,7,2,1,5,9],
+   [6,7,2,1,5,9,8,3,4],
+   [1,5,9,8,3,4,6,7,2],
+   [5,9,1,7,2,6,3,4,8],
+   [3,4,8,5,9,1,7,2,6],
+   [7,2,6,3,4,8,5,9,1]], //5
+  
+  [[1,9,5,3,4,8,6,2,7],
+   [8,4,3,7,2,6,1,9,5],
+   [6,2,7,5,9,1,8,4,3],
+   [2,7,6,8,3,4,9,5,1],
+   [4,3,8,1,5,9,2,7,6],
+   [9,5,1,6,7,2,4,3,8],
+   [7,6,2,9,1,5,3,8,4],
+   [5,1,9,4,8,3,7,6,2],
+   [3,8,4,2,6,7,5,1,9]], //6
+
+
+  [[3,5,7,9,4,2,6,8,1],
+   [8,1,6,5,3,7,2,4,9],
+   [4,9,2,1,8,6,7,3,4],
+   [2,4,9,6,1,8,5,7,3],
+   [6,8,1,7,5,3,9,2,4],
+   [7,3,5,2,9,4,1,6,8],
+   [5,7,3,4,2,9,8,1,6],
+   [1,6,8,3,7,5,4,9,2],
+   [9,2,4,8,6,1,3,5,9]], //7
+
+
+  [[9,2,4,8,6,1,3,5,7],
+   [1,6,8,3,7,5,4,9,2],
+   [5,7,3,4,2,9,8,1,6],
+   [7,3,5,2,9,4,1,6,8],
+   [6,8,1,7,5,3,9,2,4],
+   [2,4,9,6,1,8,5,7,3],
+   [4,9,2,1,8,6,7,3,5],
+   [8,1,6,5,3,7,2,4,9],
+   [3,5,7,9,4,2,6,8,1]] //8
+
+  ];
+
+
+function showPage(i) {
+var grid = document.getElementById("grid");
+grid.innerHTML = "";
+	if(arr[i].length == 6) { //page row count
+	  document.documentElement.style.setProperty("--rowcells", 6);
+	  document.documentElement.style.setProperty("--colcells", 5);
+	} else {
+	  document.documentElement.style.setProperty("--rowcells", 9);
+	  document.documentElement.style.setProperty("--colcells", 9);
+	}
+	//line
+	for (let j=0; j < arr[i].length; j++) {
+		//cell
+		for(let k=0; k < arr[i][j].length; k++) {
+
+		   var div = document.createElement("div");
+		   div.innerHTML = gujnumbers[arr[i][j][k]];
+		   console.log("appending " + arr[i][j][k]);
+		   grid.appendChild(div);
+	           if(k > 10) break;
+		}
+	}
+	
+    document.getElementById("counterbutton").value = i+1;
+    document.getElementById("counterbutton").textContent = i+1;
+}
+
+//init
+showPage(pageNum);
+
+//decrement
+document.getElementById("rightbutton").addEventListener("click", (e) => {
+  console.log("inc");
+  if(pageNum + 1 < arr.length) {
+    console.log(pageNum+1);
+    showPage(++pageNum); 
+  }
+});
+
+//increment
+document.getElementById("leftbutton").addEventListener("click", (e) => {
+  console.log("dec");
+  if(pageNum - 1 >= 0) {
+    console.log(pageNum-1);
+    showPage(--pageNum); 
+  }
+});
+
+
+</script>
+
+
+<!--
+1. grid layout for tables
+2. css vars and javascript for grid repeat cell counts
+3. flex layout for cells div digits centering
+4. pagination using javascript var pageNum and showPage method and left and right buttons
+5. responsive 50% for laptop and 100% for mobile
+6. unicode lookup codes for english to guj numbers
+-->

@@ -1,0 +1,46 @@
+<html>
+	<head>
+<style>
+
+
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: main;
+}
+.item-c {
+  grid-area: sidebar;
+}
+.item-d {
+  grid-area: footer;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /*50px 50px 50px 50px;*/
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+}
+
+
+div {
+  border: 1px solid #000;
+}
+
+</style>
+	</head>
+	<body>
+  <div id="container">
+    <div class="item-a">Header
+    </div>
+    <div class="item-b">Main</div>
+    <div class="item-c">Side Bar</div>
+    <div class="item-d">Footer</div>
+  </div>
+	</body>
+
+</html>

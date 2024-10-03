@@ -1,0 +1,180 @@
+
+
+
+ 
+<!doctype html>
+<head>
+<title>Navratri 2024</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+:root {
+  --rowcells: 10;
+  --colcells: 5;
+}
+#buttonpanel {
+  display: flex;
+  background-color: brown;
+  padding: 10px;
+  justify-content: center;
+}
+
+#buttonpanel > button {
+  /* center button text using left and right padding to 0 */
+  padding: 20px 0px 20px 0px; /*0px 20px; */
+  margin: 0 20px 0 20px;
+  font-size: 6vw;
+  font-weight: bold;
+  background-color: beige;
+  width: 15vw;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: repeat(var(--rowcells), 1fr);
+  grid-template-columns: repeat(var(--colcells), 1fr);
+  grid-gap: 2px;
+  background-color: brown;
+  padding: 10px;
+  }
+
+#grid > div  {
+  background-color: hotpink;
+  color: white;
+  /* font-size: 4vw;
+  font-weight: normal; */
+  padding: 10px;
+
+  /* center the div digits with 3 properties below */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  
+}
+
+/* last col */
+#grid > div:nth-child(5n) {
+  /* font-size: 1vw; */
+  font-weight: normal;
+}
+/* first row */
+#grid > div:nth-child(-n+5) {
+  /* font-size: 2vw; */
+  font-weight: bold;
+  background-color: lightgrey;
+}
+
+
+
+/* mobile these days have 1080 resolution so we choose higher below
+ to ensure its not mobile but laptop or pc 
+@media (min-device-width: 1124px) {
+ */
+@media (min-width: 1080px) {
+  #main {
+    width: 60%;
+    height: 50%;
+  }
+  #grid > div {
+    font-size: 1.3vw;
+  }
+}
+</style>
+</head>
+
+<div id="main">
+<div id="grid">
+
+<div>Day</div>
+<div>Date</div>
+<div>Navratri Colour</div>
+<div>Goddess Name</div>
+<div>Significance</div>
+<div>Day 1</div>
+<div>October 3</div>
+<div>Yellow</div>
+<div>Goddess Shailputri</div>
+<div>Symbolizes happiness, brightness, and energy.</div>
+<div>Day 2</div>
+<div>October 4</div>
+<div>Green</div>
+<div>Goddess Brahmacharini</div>
+<div>Represents growth, harmony, and new beginnings.</div>
+<div>Day 3</div>
+<div>October 5</div>
+<div>Grey</div>
+<div>Goddess Chandraghanta</div>
+<div>Reflects stability and strength.</div>
+<div>Day 4</div>
+<div>October 6</div>
+<div>Orange</div>
+<div>Goddess Kushmanda</div>
+<div>Symbolizes enthusiasm, warmth, and energy.</div>
+<div>Day 5</div>
+<div>October 7</div>
+<div>White</div>
+<div>Goddess Skandamata</div>
+<div>Represents peace and purity.</div>
+<div>Day 6</div>
+<div>October 8</div>
+<div>Red</div>
+<div>Goddess Katyayani</div>
+<div>A color of power and passion.</div>
+<div>Day 7</div>
+<div>October 9</div>
+<div>Royal Blue</div>
+<div>Goddess Kaalratri</div>
+<div>Represents royalty, elegance, and wealth.</div>
+<div>Day 8</div>
+<div>October 10</div>
+<div>Pink</div>
+<div>Goddess Mahagauri</div>
+<div>Symbolizes compassion, harmony, and love.</div>
+<div>Day 9</div>
+<div>October 11</div>
+<div>Purple</div>
+<div>Goddess Siddhidatri</div>
+<div>Reflects spirituality, ambition, and prosperity.</div>
+
+</div>
+
+<!--div id="buttonpanel">
+	<button id="leftbutton">&lt;</button>
+<button id="counterbutton"/>
+	<button id="rightbutton">&gt;</button>
+</div-->
+
+</div>
+<script>
+
+function showPage() {
+var grid = document.getElementById("grid");
+var alldiv = grid.getElementsByTagName("div");
+//alert(`There are ${alldiv.length} divs`);
+for(var i=7; i<alldiv.length; i += 5 ) {
+  var c = alldiv[i].innerHTML;
+  if (c == 'White' || c == 'Yellow') {
+    alldiv[i].style.color = "black";
+  } 
+  alldiv[i].style.backgroundColor = c.replaceAll(" ", '');
+  
+}
+}
+
+//init
+showPage();
+
+
+
+</script>
+
+
+<!--
+1. grid layout for tables
+2. css vars and javascript for grid repeat cell counts
+3. flex layout for cells div digits centering
+4. pagination using javascript var pageNum and showPage method and left and right buttons
+5. responsive 50% for laptop and 100% for mobile
+6. unicode lookup codes for english to guj numbers
+-->

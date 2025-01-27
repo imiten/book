@@ -34,17 +34,17 @@
   display: grid;
   grid-template-rows: repeat(var(--rowcells), 1fr);
   grid-template-columns: repeat(var(--colcells), 1fr);
-  grid-gap: 10px;
+  grid-gap: 5px; /* reduced from 10 to 5 for 9 col to fit well in on mobile */
   background-color: brown;
-  padding: 10px;
+  padding: 5px; /* reduced from 10 to 5 for 9 col to fit well in on mobile */
   }
 
 #grid > div  {
   background-color: hotpink;
   color: white;
-  font-size: 6vw;
+  font-size: 8vw; /* increaded from 6 to 8 and reduced padding from 10 to 5 */
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
 
   /* center the div digits with 3 properties below */
   display: flex; 
@@ -61,6 +61,10 @@
   #main {
     width: 50%;
     height: 50%;
+  }
+  #grid {
+    grid-gap: 10px;
+    padding: 10px;
   }
   #buttonpanel > button, #grid > div {
     font-size: 2vw;
@@ -234,7 +238,7 @@ const arr = [
    [4,5,3,2,1],
    [5,4,3,2,1]], //munisuvrat
 
-  [[1,9,5,8,4,3,6,2,9],
+  [[1,9,5,8,4,3,6,2,7],
    [6,2,7,1,9,5,8,4,3],
    [8,4,3,6,2,7,1,9,5],
    [2,7,6,4,3,8,9,5,1],
@@ -242,11 +246,11 @@ const arr = [
    [9,5,1,2,7,6,4,3,8],
    [5,1,9,3,8,4,7,6,2],
    [7,6,2,5,1,9,3,8,4],
-   [3,8,4,7,6,2,5,1,9]], //nemnath
+   [3,8,4,7,6,2,5,1,9]], //naminath
 
   [[2,6,7,9,1,5,8,3,4],
    [9,1,5,4,8,3,6,7,2],
-   [4,8,3,2,6,7,1,5,4],
+   [4,8,3,2,6,7,1,5,9],
    [1,5,9,6,7,2,3,4,8],
    [8,3,4,1,5,9,7,2,6],
    [6,7,2,8,3,4,5,9,1],

@@ -404,7 +404,12 @@ grid.innerHTML = "";
     var j = i+1;	
     document.getElementById("counterbutton").value = j;
     document.getElementById("counterbutton").textContent = j;
-    document.getElementById("imageid").src = "./" + j + ".png";
+    if(j <= 24) { 
+	document.getElementById("imageid").src = "./" + j + ".png";
+	document.getElementById("imageid").style.display = 'block';
+     } else {
+	document.getElementById("imageid").style.display = 'none';
+     }
 }
 
 //init
